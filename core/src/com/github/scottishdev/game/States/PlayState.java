@@ -16,15 +16,12 @@ public class PlayState extends State{
 
     @Override
     protected void handleInput() {
-        if(Gdx.input.justTouched()){
-            gsm.set(new PlayState(gsm));
-            dispose();
-        }
+
     }
 
     @Override
     public void update(float dt) {
-        handleInput();
+
     }
 
     @Override
