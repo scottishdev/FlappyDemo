@@ -18,4 +18,5 @@ public abstract class State {
     protected abstract void handleInput();
     public abstract void update(float dt); //dt is deltatime
     public abstract void render(SpriteBatch sb);
+    public abstract void dispose();
 }
