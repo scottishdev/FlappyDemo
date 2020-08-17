@@ -17,7 +17,9 @@ public class PlayState extends State{
 
     @Override
     protected void handleInput() {
-
+        if(Gdx.input.justTouched()){
+            bird.jump();
+        }
     }
 
     @Override
