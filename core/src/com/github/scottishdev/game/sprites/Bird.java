@@ -24,5 +24,11 @@ public class Bird {
         velocity.scl(1/dt); // check this one
     }
 
-    
+    public Vector3 getPosition() {
+        return position;
+    }
+
+    public Texture getTexture() {
+        return bird;
+    }
 }
