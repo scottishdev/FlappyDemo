@@ -17,10 +17,14 @@ public class Bird {
     }
 
     public void update(float dt){
-        velocity.add(0, GRAVITY, 0); //Gravity only affects Y axis
+        if(position.y > 0) {
+            velocity.add(0, GRAVITY, 0); //If Y position is > 0 then add GRAVITY
+        }
         velocity.scl(dt);
         position.add(0, velocity.y,0); // changes only the y axis position
-
+        if(position.y < 0){
+            position.y = 0; //makes bird not fall off screen
+        }
         velocity.scl(1/dt); // check this one
     }
 
