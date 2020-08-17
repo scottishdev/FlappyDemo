@@ -6,6 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.Random;
 
 public class Tube {
+    public static final int TUBE_WIDTH = 52; //Refactor to private?
+
     private static final int FLUCTUATION = 130;//tube moves randomly between 0 - 130 on Y axis
     private static final int TUBE_GAP = 100;//Gaps between tubes is 100
     private static final int LOWEST_OPENING = 120; //Top tube cannot be below bottom of screen
@@ -36,5 +38,10 @@ public class Tube {
 
     public Vector2 getPositionBottomTube() {
         return positionBottomTube;
+    }
+
+    public void reposition(float x){
+        positionTopTube.set(x, rand.nextInt(FLUCTUATION) + TUBE_GAP + LOWEST_OPENING);
+        positionBottomTube.set(x, positionTopTube.y - TUBE_GAP - bottomTube.getHeight());
     }
 }

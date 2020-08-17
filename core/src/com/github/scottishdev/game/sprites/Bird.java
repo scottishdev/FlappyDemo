@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector3;
 
 public class Bird {
     private static final int GRAVITY = -15;
+    private static final int MOVEMENT = 100;
     private Vector3 position;
     private Vector3 velocity;
 
@@ -21,7 +22,7 @@ public class Bird {
             velocity.add(0, GRAVITY, 0); //If Y position is > 0 then add GRAVITY
         }
         velocity.scl(dt);
-        position.add(0, velocity.y,0); // changes only the y axis position
+        position.add(MOVEMENT * dt, velocity.y,0); // changes only the y axis position
         if(position.y < 0){
             position.y = 0; //makes bird not fall off screen
         }
