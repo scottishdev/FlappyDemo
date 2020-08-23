@@ -58,4 +58,9 @@ public class Tube {
     public boolean collides (Rectangle player){
         return player.overlaps(boundsTop) || player.overlaps(boundsBottom);
     } // Returns true if the player and tube overlaps each other
+
+    public void dispose(){
+        topTube.dispose();
+        bottomTube.dispose();
+    }
 }
