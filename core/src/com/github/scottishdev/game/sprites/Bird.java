@@ -1,6 +1,7 @@
 package com.github.scottishdev.game.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class Bird {
@@ -8,6 +9,7 @@ public class Bird {
     private static final int MOVEMENT = 100;
     private Vector3 position;
     private Vector3 velocity;
+    private Rectangle bounds;
 
     private Texture bird;
 
@@ -15,6 +17,7 @@ public class Bird {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(0, 0,0);
         bird = new Texture("bird.png");
+        bounds = new Rectangle(x, y, bird.getWidth(), bird.getHeight()); //collision box of bird
     }
 
     public void update(float dt){
@@ -27,6 +30,7 @@ public class Bird {
             position.y = 0; //makes bird not fall off screen
         }
         velocity.scl(1/dt); // check this one
+        bounds.setPosition(position.x, position.y); //update collision box of bird each time it moves
     }
 
     public Vector3 getPosition() {
@@ -39,5 +43,9 @@ public class Bird {
 
     public void jump(){
         velocity.y = 250;
+    }
+
+    public Rectangle getBounds(){
+        return bounds;
     }
 }
