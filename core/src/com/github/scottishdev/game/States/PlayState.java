@@ -64,6 +64,10 @@ public class PlayState extends State{
             }
 
         }
+        //Restarts game if bird hits ground
+        if(bird.getPosition().y <= ground.getHeight() + GROUND_Y_OFFSET){
+            gsm.set(new PlayState(gsm));
+        }
         cam.update();
     }
 
