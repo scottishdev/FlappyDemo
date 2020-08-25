@@ -12,19 +12,20 @@ public class Bird {
     private Vector3 velocity;
     private Rectangle bounds;
     private Animation birdAnimation;
+    private Texture birdTexture;
 
     private Texture bird;
 
     public Bird(int x, int y){
         position = new Vector3(x, y, 0);
         velocity = new Vector3(0, 0,0);
-        bird = new Texture("bird.png");
-        Texture texture = new Texture("birdanimation.png");
-        birdAnimation = new Animation(new TextureRegion(texture), 3, 0.5f);
-        bounds = new Rectangle(x, y, bird.getWidth(), bird.getHeight()); //collision box of bird
+        birdTexture = new Texture("birdanimation.png");
+        birdAnimation = new Animation(new TextureRegion(birdTexture), 3, 0.5f);
+        bounds = new Rectangle(x, y, birdTexture.getWidth() / 3, birdTexture.getHeight()); //collision box of bird
     }
 
     public void update(float dt){
+        birdAnimation.update(dt);
         if(position.y > 0) {
             velocity.add(0, GRAVITY, 0); //If Y position is > 0 then add GRAVITY
         }
@@ -41,8 +42,8 @@ public class Bird {
         return position;
     }
 
-    public Texture getTexture() {
-        return bird;
+    public TextureRegion getTexture() {
+        return birdAnimation.getFrame();
     }
 
     public void jump(){
@@ -53,5 +54,5 @@ public class Bird {
         return bounds;
     }
 
-    public void dispose(){bird.dispose();}
+    public void dispose(){birdTexture.dispose();}
 }
