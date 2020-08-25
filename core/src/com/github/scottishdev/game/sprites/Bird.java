@@ -1,6 +1,7 @@
 package com.github.scottishdev.game.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
@@ -10,6 +11,7 @@ public class Bird {
     private Vector3 position;
     private Vector3 velocity;
     private Rectangle bounds;
+    private Animation birdAnimation;
 
     private Texture bird;
 
@@ -17,6 +19,8 @@ public class Bird {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(0, 0,0);
         bird = new Texture("bird.png");
+        Texture texture = new Texture("birdanimation.png");
+        birdAnimation = new Animation(new TextureRegion(texture), 3, 0.5f);
         bounds = new Rectangle(x, y, bird.getWidth(), bird.getHeight()); //collision box of bird
     }
 
