@@ -3,10 +3,13 @@ package com.github.scottishdev.game.States;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.github.scottishdev.game.FlappyDemo;
 import com.github.scottishdev.game.sprites.Bird;
 import com.github.scottishdev.game.sprites.Tube;
+
+import java.util.Vector;
 
 public class PlayState extends State{
     private static final int TUBE_SPACING_X = 125; //Space between tubes on X axis
@@ -14,14 +17,19 @@ public class PlayState extends State{
 
     private Bird bird;
     private Texture bg;
+    private Texture ground;
+    private Vector2 groundPosition1, groundPosition2;
 
     private Array<Tube> tubes;
 
-    public PlayState(GameStateManager gsm) {
+    public PlayState(GameStateManager gsm) { //Constructor
         super(gsm);
         bird = new Bird(50,300);
         cam.setToOrtho(false, FlappyDemo.WIDTH / 2, FlappyDemo.HEIGHT / 2);
         bg = new Texture("bg.png");
+        ground = new Texture("ground.png");
+        groundPosition1 = new Vector2(cam.position.x - cam.viewportWidth / 2, 0);
+        groundPosition2 = new Vector2((cam.position.x - cam.viewportWidth / 2) + ground.getWidth(), 0); //x co-ords needs to be added onto original "ground"
 
         tubes = new Array<Tube>();
 
@@ -68,6 +76,10 @@ public class PlayState extends State{
             sb.draw(tube.getTopTube(), tube.getPositionTopTube().x, tube.getPositionTopTube().y);
             sb.draw(tube.getBottomTube(), tube.getPositionBottomTube().x, tube.getPositionBottomTube().y);
         }
+
+        //Draws both sets of ground.png
+        sb.draw(ground, groundPosition1.x, groundPosition1.y);
+        sb.draw(ground, groundPosition2.x, groundPosition2.y);
         sb.end();
     }
 
