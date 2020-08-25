@@ -14,6 +14,7 @@ import java.util.Vector;
 public class PlayState extends State{
     private static final int TUBE_SPACING_X = 125; //Space between tubes on X axis
     private static final int TUBE_COUNT = 4;
+    private static final int GROUND_Y_OFFSET = -50; // Pushes ground lower on the Y axis of screen
 
     private Bird bird;
     private Texture bg;
@@ -28,8 +29,8 @@ public class PlayState extends State{
         cam.setToOrtho(false, FlappyDemo.WIDTH / 2, FlappyDemo.HEIGHT / 2);
         bg = new Texture("bg.png");
         ground = new Texture("ground.png");
-        groundPosition1 = new Vector2(cam.position.x - cam.viewportWidth / 2, 0);
-        groundPosition2 = new Vector2((cam.position.x - cam.viewportWidth / 2) + ground.getWidth(), 0); //x co-ords needs to be added onto original "ground"
+        groundPosition1 = new Vector2(cam.position.x - cam.viewportWidth / 2, GROUND_Y_OFFSET);
+        groundPosition2 = new Vector2((cam.position.x - cam.viewportWidth / 2) + ground.getWidth(), GROUND_Y_OFFSET); //x co-ords needs to be added onto original "ground"
 
         tubes = new Array<Tube>();
 
@@ -48,6 +49,7 @@ public class PlayState extends State{
     @Override
     public void update(float dt) {
         handleInput();
+        updateGround();
         bird.update(dt);
         cam.position.x = bird.getPosition().x + 80;
 
@@ -90,6 +92,16 @@ public class PlayState extends State{
         for (Tube tube: tubes) {
             tube.dispose();
             System.out.println("Playstate disposed"); //DELETE
+        }
+    }
+
+    public void updateGround(){
+        //Checks if camera has passed the ground.png showing on screen
+        if(cam.position.x - (cam.viewportWidth / 2) > groundPosition1.x + ground.getWidth()){
+            groundPosition1.add(ground.getWidth() * 2, 0);
+        }
+        if(cam.position.x - (cam.viewportWidth / 2) > groundPosition2.x + ground.getWidth()){
+            groundPosition2.add(ground.getWidth() * 2, 0);
         }
     }
 }
