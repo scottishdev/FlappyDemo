@@ -9,8 +9,6 @@ import com.github.scottishdev.game.FlappyDemo;
 import com.github.scottishdev.game.sprites.Bird;
 import com.github.scottishdev.game.sprites.Tube;
 
-import java.util.Vector;
-
 public class PlayState extends State{
     private static final int TUBE_SPACING_X = 125; //Space between tubes on X axis
     private static final int TUBE_COUNT = 4;
@@ -93,6 +91,7 @@ public class PlayState extends State{
     public void dispose() {
         bg.dispose();
         bird.dispose();
+        ground.dispose();
         for (Tube tube: tubes) {
             tube.dispose();
             System.out.println("Playstate disposed"); //DELETE
