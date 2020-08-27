@@ -34,7 +34,7 @@ public class MenuState extends State{
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(background, 0,0, FlappyDemo.WIDTH, FlappyDemo.HEIGHT);
-        sb.draw(playButton, (FlappyDemo.WIDTH /2) - (playButton.getWidth()/2), (FlappyDemo.HEIGHT/2));
+        sb.draw(playButton, cam.position.x - playButton.getWidth() / 2, cam.position.y);
         sb.end();
     }
 
