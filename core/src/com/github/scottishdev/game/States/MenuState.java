@@ -33,7 +33,7 @@ public class MenuState extends State{
     public void render(SpriteBatch sb) {
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
-        sb.draw(background, 0,0, FlappyDemo.WIDTH, FlappyDemo.HEIGHT);
+        sb.draw(background, 0,0);
         sb.draw(playButton, cam.position.x - playButton.getWidth() / 2, cam.position.y);
         sb.end();
     }
