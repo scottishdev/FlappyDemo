@@ -14,8 +14,6 @@ public class Bird {
     private Animation birdAnimation;
     private Texture birdTexture;
 
-    private Texture bird;
-
     public Bird(int x, int y){
         position = new Vector3(x, y, 0);
         velocity = new Vector3(0, 0,0);
